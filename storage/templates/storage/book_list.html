@@ -5,7 +5,7 @@
   {% block content_header %}
     <h2>Books</h2>
     <p>
-      <a href="{% url 'upload_book' %}" class="btn btn-primary">Upload book</a>
+      <a href="{% url 'upload_book' %}" class="btn btn-primary">Upload file</a>
     </p>
   {% endblock %}
 
@@ -14,7 +14,7 @@
       <tr>
         <th>Cover</th>
         <th>Title</th>
-        <th>Author</th>
+        <th>User</th>
         <th>Download</th>
         <th>Delete</th>
       </tr>
@@ -30,10 +30,10 @@
             {% endif %}
           </td>
           <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
+          <td>{{ book.user }}</td>
           <td>
-            <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
-              Download PDF
+            <a href="{{ book.attached_file.url }}" class="btn btn-primary btn-sm" target="_blank">
+              Download File
             </a>
           </td>
           <td>

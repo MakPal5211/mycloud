@@ -33,7 +33,7 @@ def upload_book(request):
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('storage/book_list')
+            return redirect('book_list')
     else:
         form = BookForm()
     return render(request, 'storage/upload_book.html', {
@@ -48,14 +48,14 @@ def delete_book(request, pk):
     return redirect('book_list')
 
 
-class BookListView(ListView):
-    model = Book
-    template_name = 'storage/class_book_list.html'
-    context_object_name = 'books'
-
-
-class UploadBookView(CreateView):
-    model = Book
-    form_class = BookForm
-    success_url = reverse_lazy('class_book_list')
-    template_name = 'storage/upload_book.html'
+# class BookListView(ListView):
+#     model = Book
+#     template_name = 'storage/class_book_list.html'
+#     context_object_name = 'books'
+#
+#
+# class UploadBookView(CreateView):
+#     model = Book
+#     form_class = BookForm
+#     success_url = reverse_lazy('class_book_list')
+#     template_name = 'storage/upload_book.html'

@@ -3,8 +3,8 @@ from django.views.generic import TemplateView, ListView, CreateView
 from django.core.files.storage import FileSystemStorage
 from django.urls import reverse_lazy
 
-from .forms import BookForm
-from .models import Book
+from .forms import StForm
+from .models import Storage
 
 
 class Home(TemplateView):
@@ -21,31 +21,31 @@ def upload(request):
     return render(request, 'storage/upload.html', context)
 
 
-def book_list(request):
-    books = Book.objects.all()
-    return render(request, 'storage/book_list.html', {
-        'books': books
+def st_list(request):
+    files = Storage.objects.all()
+    return render(request, 'storage/st_list.html', {
+        'files': files
     })
 
 
-def upload_book(request):
+def upload_file(request):
     if request.method == 'POST':
-        form = BookForm(request.POST, request.FILES)
+        form = StForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('book_list')
+            return redirect('st_list')
     else:
-        form = BookForm()
-    return render(request, 'storage/upload_book.html', {
+        form = StForm()
+    return render(request, 'storage/upload_file.html', {
         'form': form
     })
 
 
-def delete_book(request, pk):
+def delete_file(request, pk):
     if request.method == 'POST':
-        book = Book.objects.get(pk=pk)
-        book.delete()
-    return redirect('book_list')
+        file = Storage.objects.get(pk=pk)
+        file.delete()
+    return redirect('st_list')
 
 
 # class BookListView(ListView):
@@ -58,4 +58,4 @@ def delete_book(request, pk):
 #     model = Book
 #     form_class = BookForm
 #     success_url = reverse_lazy('class_book_list')
-#     template_name = 'storage/upload_book.html'
+#     template_name = 'storage/upload_file.html'

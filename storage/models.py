@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
-class Book(models.Model):
+class Storage(models.Model):
     # user = models.ForeignKey(settings.AUTH_USER_MODEL,
     #                          related_name='file_saved',
     #                          on_delete=models.CASCADE)

@@ -3,9 +3,9 @@
 {% block content %}
 
   {% block content_header %}
-    <h2>Books</h2>
+    <h2>Storage</h2>
     <p>
-      <a href="{% url 'upload_book' %}" class="btn btn-primary">Upload file</a>
+      <a href="{% url 'upload_file' %}" class="btn btn-primary">Upload file</a>
     </p>
   {% endblock %}
 
@@ -20,24 +20,24 @@
       </tr>
     </thead>
     <tbody>
-      {% for book in books %}
+      {% for file in files %}
         <tr>
           <td>
-            {% if book.cover %}
-              <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
+            {% if file.cover %}
+              <img src="{{ file.cover.url }}" alt="{{ file.title }}" style="width:100px;">
             {% else %}
               <span class="text-muted">No cover</span>
             {% endif %}
           </td>
-          <td>{{ book.title }}</td>
-          <td>{{ book.user }}</td>
+          <td>{{ file.title }}</td>
+          <td>{{ file.user }}</td>
           <td>
-            <a href="{{ book.attached_file.url }}" class="btn btn-primary btn-sm" target="_blank">
+            <a href="{{ file.attached_file.url }}" class="btn btn-primary btn-sm" target="_blank">
               Download File
             </a>
           </td>
           <td>
-            <form method="post" action="{% url 'delete_book' book.pk %}">
+            <form method="post" action="{% url 'delete_file' file.pk %}">
               {% csrf_token %}
               <button type="submit" class="btn btn-danger btn-sm">Delete</button>
             </form>

@@ -1,10 +1,10 @@
 from django import forms
 
-from .models import Book
+from .models import Storage
 
 
-class BookForm(forms.ModelForm):
+class StForm(forms.ModelForm):
     class Meta:
-        model = Book
+        model = Storage
         fields = ('title', 'user', 'attached_file', 'cover')
 
